@@ -1,3 +1,5 @@
 .idea/*
 target/*
 *.iml
+.nrepl-port
+.lein-repl-history
