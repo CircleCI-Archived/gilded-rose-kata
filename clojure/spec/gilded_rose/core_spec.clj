@@ -37,7 +37,7 @@
                     100
                     0)]
         (fn [{:keys [quality]} prev-item]
-          (or (< (:quality prev-item)
+          (or (= (inc (:quality prev-item))
                  quality)
               (= 50 quality)))))
   (it "Conjured items quality degrades twice as fast"
