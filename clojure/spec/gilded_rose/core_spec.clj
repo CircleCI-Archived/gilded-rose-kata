@@ -78,7 +78,7 @@
           (if (= name "Sulfuras, Hand Of Ragnaros")
             (= quality 80)
             (<= 0 quality 50)))))
-  (it "normal items degrade in quality after sell-by by 2"
+  (it "normal items degrade in quality after sell-by by 2 till zero"
       (every-call-to-update-quality
         (gr.c/update-current-inventory)
         (fn [{:keys [name quality sell-in]} prev-item]
@@ -86,6 +86,8 @@
               (= name "Backstage passes to a TAFKAL80ETC concert")
               (= name "Aged Brie")
               (not (neg? sell-in))
+              (and (not (pos? (- (:quality prev-item) 2)))
+                   (zero? quality))
               (= (- (:quality prev-item) 2)
                  quality)))))
   (it "sell-in always goes lower and differs by 1"
