@@ -39,6 +39,15 @@
           (or (< (:quality prev-item)
                  quality)
               (= 50 quality)))))
+  (it "Conjured items quality degrades twice as fast"
+      (every-call-to-update-quality
+        [(gr.c/item "Conjured"
+                    100
+                    231)]
+        (fn [{:keys [sell-in quality]} prev-item]
+          (or (not (neg? sell-in))
+              (= (:quality prev-item)
+                 (+ quality 4))))))
   (it "Backstage passes quality gets better, then goes to zero"
       (every-call-to-update-quality
         [(gr.c/item "Backstage passes to a TAFKAL80ETC concert"
@@ -69,7 +78,7 @@
           (if (= name "Sulfuras, Hand Of Ragnaros")
             (= quality 80)
             (<= 0 quality 50)))))
-  (it "normal items degrade in quality after sell-by by 2"
+  (it "normal items degrade in quality after sell-by by 2 till zero"
       (every-call-to-update-quality
         (gr.c/update-current-inventory)
         (fn [{:keys [name quality sell-in]} prev-item]
@@ -77,6 +86,8 @@
               (= name "Backstage passes to a TAFKAL80ETC concert")
               (= name "Aged Brie")
               (not (neg? sell-in))
+              (and (not (pos? (- (:quality prev-item) 2)))
+                   (zero? quality))
               (= (- (:quality prev-item) 2)
                  quality)))))
   (it "sell-in always goes lower and differs by 1"
