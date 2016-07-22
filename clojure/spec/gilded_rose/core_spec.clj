@@ -3,21 +3,22 @@
             [gilded-rose.core :as gr.c]))
 
 (defn every-call-to-update-quality
-  [items pred]
-  (let [n 10000
-        updated-items-seq (take n (iterate gr.c/update-quality items))
-        f-should-be (fn [& args]
-                      (should-be (fn [[_ items_n-1 items_n]]
-                                   (every? (fn [args]
-                                             (apply pred args))
-                                           (map list
-                                                items_n
-                                                items_n-1)))
-                                 args))]
-    (doall (map f-should-be
-                (rest (range))
-                updated-items-seq
-                (rest updated-items-seq)))))
+  ([items pred]
+    (every-call-to-update-quality items pred 10000))
+  ([items pred n]
+   (let [updated-items-seq (take n (iterate gr.c/update-quality items))
+         f-should-be (fn [& args]
+                       (should-be (fn [[_ items_n-1 items_n]]
+                                    (every? (fn [args]
+                                              (apply pred args))
+                                            (map list
+                                                 items_n
+                                                 items_n-1)))
+                                  args))]
+     (doall (map f-should-be
+                 (rest (range))
+                 updated-items-seq
+                 (rest updated-items-seq))))))
 
 (describe
   "gilded rose - update-quality"
@@ -95,6 +96,14 @@
         (gr.c/update-current-inventory)
         (fn [{:keys [sell-in]} prev-item]
           (= (:sell-in prev-item)
-             (inc sell-in))))))
+             (inc sell-in)))))
+  (it "sell-in is not changed for Sulfuras with proper capitalization"
+      (every-call-to-update-quality
+        [(gr.c/item "Sulfuras, Hand of Ragnaros"
+                    100
+                    1000)]
+        (fn [{:keys [sell-in]} prev-item]
+          (= (:sell-in prev-item)
+             sell-in)))))
 
 (run-specs)
