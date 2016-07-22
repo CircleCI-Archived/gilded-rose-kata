@@ -39,6 +39,15 @@
           (or (< (:quality prev-item)
                  quality)
               (= 50 quality)))))
+  (it "Conjured items quality degrades twice as fast"
+      (every-call-to-update-quality
+        [(gr.c/item "Conjured"
+                    100
+                    231)]
+        (fn [{:keys [sell-in quality]} prev-item]
+          (or (not (neg? sell-in))
+              (= (:quality prev-item)
+                 (+ quality 4))))))
   (it "Backstage passes quality gets better, then goes to zero"
       (every-call-to-update-quality
         [(gr.c/item "Backstage passes to a TAFKAL80ETC concert"
