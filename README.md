@@ -44,8 +44,7 @@ to our system:
 
 Feel free to make any changes to the update-quality method and add any new code
 as long as everything still works correctly. However, do not alter the item
-function as that belongs to the goblin in the corner who will insta-rage and
-one-shot you as he doesn't believe in shared code ownership.
+function/class/struct as that belongs to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership.
 
 
 Just for clarification, an item can never have its quality increase above 50,
