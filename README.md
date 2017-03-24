@@ -32,7 +32,7 @@ Pretty simple, right? Well this is where it gets interesting:
   - "Sulfuras", being a legendary item, never has to be sold or decreases in
     quality
 
-  - "Backstage passes", like aged brie, increases in quality as it's sell-in
+  - "Backstage passes", like aged brie, increases in quality as its sell-in
     value approaches; quality increases by 2 when there are 10 days or less
     and by 3 when there are 5 days or less but quality drops to 0 after the
     concert
@@ -44,8 +44,7 @@ to our system:
 
 Feel free to make any changes to the update-quality method and add any new code
 as long as everything still works correctly. However, do not alter the item
-function as that belongs to the goblin in the corner who will insta-rage and
-one-shot you as he doesn't believe in shared code ownership.
+function/class/struct as that belongs to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership.
 
 
 Just for clarification, an item can never have its quality increase above 50,
