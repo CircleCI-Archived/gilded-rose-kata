@@ -32,7 +32,16 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEquals("foo", items[0].name)
 
-    def test_worthless(self):
+    def test_expired(self):
+        # Arrange
+        items = [Item("Backstage pass for Elvis", 0, 12)]
+        gilded_rose = GildedRose(items)
+        # Act
+        gilded_rose.update_quality()
+        # Assert
+        self.assertEquals(0, items[0].quality)
+
+    def test_always_worthless(self):
         # Arrange
         items = [Item("Old Trash", 3, 0)]
         gilded_rose = GildedRose(items)
@@ -50,7 +59,6 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         # Assert
         self.assertEquals(4, items[0].quality)
-
 
 if __name__ == '__main__':
     unittest.main()

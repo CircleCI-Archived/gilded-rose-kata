@@ -6,6 +6,7 @@ MIN_QUALITY = 0
 
 
 class GildedRose(object):
+
     def __init__(self, items):
         self.items = items
 
@@ -46,6 +47,8 @@ class GildedRose(object):
             item.quality = item.quality + quality_change
             item.quality = min([item.quality, MAX_QUALITY])
             item.quality = max([item.quality, MIN_QUALITY])
+            if item.name.lower().startswith("backstage pass") and item.sell_in < 1:
+                item.quality = 0
             item.sell_in = item.sell_in - 1
 
 
