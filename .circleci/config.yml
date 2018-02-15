@@ -15,3 +15,6 @@ jobs:
       - run:
           name: testttttsssss
           command: lein test
+      - run:
+          name: a pr test
+          command: echo alex is a human
