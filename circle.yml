@@ -1,4 +1,0 @@
-test:
-  override:
-    - cd clojure && lein spec
-

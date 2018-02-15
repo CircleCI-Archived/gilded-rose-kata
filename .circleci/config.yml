@@ -1,0 +1,15 @@
+version: 2.0
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+
+jobs:
+  build-cache:
+    docker:
+      - image: clojure/lein
+    steps:
+      - checkout
+      - lein test
