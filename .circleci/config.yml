@@ -7,7 +7,7 @@ workflows:
       - test
 
 jobs:
-  build-cache:
+  test:
     docker:
       - image: clojure/lein
     steps:
