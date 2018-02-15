@@ -12,4 +12,6 @@ jobs:
       - image: clojure/lein
     steps:
       - checkout
-      - lein test
+      - run:
+          name: testttttsssss
+          command: lein test
