@@ -3,4 +3,4 @@
           [gilded-rose.core :refer [update-quality item]]))
 
 (deftest gilded-rose-test
-  (is (= "fixme" (update-quality (item "foo" 0 0)))))
+  (is (= "fixme" (:name (first (update-quality [(item "foo" 0 0)]))))))
