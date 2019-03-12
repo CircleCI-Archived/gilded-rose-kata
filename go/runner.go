@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -9,33 +11,47 @@ import (
 )
 
 func main() {
-	inFile := os.Args[1]
-	outFile := os.Args[2]
-	fmt.Printf("Reading from: %v.  Writing to: %v\n", inFile, outFile)
-	dat, err := ioutil.ReadFile(inFile)
-	if err != nil {
-		panic(err)
+	if err := run(os.Args); err != nil {
+		fmt.Fprintf(os.Stderr, "Error:%v\n", err)
+		os.Exit(1)
 	}
-	lines := strings.Split(string(dat), "\n")
-	items = nil
-	for i := 0; i < len(lines); i++ {
-		if !strings.HasPrefix(lines[i], ";") && (lines[i] != "") {
-			pieces := strings.Split(lines[i], "__")
-			name := pieces[0]
-			sellIn, _ := strconv.Atoi(pieces[1])
-			quality, _ := strconv.Atoi(pieces[2])
-			items = append(items, Item{name, sellIn, quality})
+}
+
+func run(args []string) error {
+	if len(args) != 3 {
+		return fmt.Errorf("Usage:\n  %s INPUT_FILENAME OUTPUT_FILENAME", args[0])
+	}
+
+	inFilename := os.Args[1]
+	outFilename := os.Args[2]
+	fmt.Printf("Reading from: %v.  Writing to: %v\n", inFilename, outFilename)
+
+	file, err := os.Open(inFilename)
+	if err != nil {
+		return err
+	}
+	scanner := bufio.NewScanner(file)
+	items := []Item{}
+	for scanner.Scan() {
+		line := scanner.Text()
+		if strings.HasPrefix(line, ";") || line == "" {
+			continue
 		}
+
+		pieces := strings.SplitN(line, "__", 3)
+		if len(pieces) != 3 {
+			return fmt.Errorf("invalid line in input file: %v", line)
+		}
+		sellIn, _ := strconv.Atoi(pieces[1])
+		quality, _ := strconv.Atoi(pieces[2])
+		items = append(items, Item{name: pieces[0], sellIn: sellIn, quality: quality})
 	}
 
-	GildedRose()
+	GildedRose(items)
 
-	var outStrings []string
-	for i := 0; i < len(items); i++ {
-		outStrings = append(outStrings, fmt.Sprintf("%v__%v__%v", items[i].name, items[i].sellIn, items[i].quality))
+	buf := bytes.NewBuffer(nil)
+	for _, item := range items {
+		buf.WriteString(fmt.Sprintf("%v__%v__%v\n", item.name, item.sellIn, item.quality))
 	}
-	err = ioutil.WriteFile(outFile, []byte(strings.Join(outStrings, "\n")), 06444)
-	if err != nil {
-		panic(err)
-	}
+	return ioutil.WriteFile(outFilename, buf.Bytes(), 0644)
 }
