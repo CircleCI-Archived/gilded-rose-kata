@@ -6,7 +6,7 @@
   justify-content: center;
 
   grid-row-gap: 1em;
-  grid-template-columns: 1fr 2fr .5fr .5fr 2fr;
+  grid-template-columns: 1fr auto .5fr .5fr 2fr;
 }
 .item-name {
   border-width: 1px 0 1px 1px;
@@ -15,6 +15,7 @@
   grid-column-start: 2;
   grid-column-end: 3;
   text-align: right;
+  padding-left: .5em;
 }
 .item-sell-in {
   border-width: 1px 0 1px 0;
