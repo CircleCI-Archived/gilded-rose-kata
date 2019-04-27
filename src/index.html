@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Gilded Rose Texttest Fixture</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <script type="text/javascript" src="gilded_rose.js"></script>
+  <script type="text/javascript">
+    let doc;
+    
+    window.onload = () => {
+      doc = document.querySelector('body');
+      doc.innerHTML += `<p>OMGHAI!</p><p>&#47;wave</p>`;
+
+      items.push(new Item('+5 Dexterity Vest', 10, 20));
+      items.push(new Item('Aged Brie', 2, 0));
+      items.push(new Item('Elixir of the Mongoose', 5, 7));
+      items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
+      items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
+
+      // this conjured item does not work properly yet
+      // items.push(new Item('Conjured Mana Cake', 3, 6));
+      const days = 2;
+
+      for (let i = 0; i < days; i++) {
+        showHeaderFor(i);
+        showItemsFor(i);
+        update_quality();
+      }
+    }
+    const showHeaderFor = (day) => {
+      doc.innerHTML += `<p>-------- day ${day} --------</p>`;
+    }
+
+    const showItemsFor = (day) => {
+      doc.innerHTML += `<p>name, sellIn, quality</p>`;
+      items.map( item => {
+        doc.innerHTML += `<p>${item.name}, ${item.sell_in}, ${item.quality}</p>`;
+      });
+      doc.innerHTML += `<br />`;
+    }
+  </script>
+
+</head>
+
+<body>
+</body>
+
+</html>

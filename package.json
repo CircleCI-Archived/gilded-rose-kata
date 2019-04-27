@@ -1,0 +1,26 @@
+{
+  "name": "coding-showcase",
+  "version": "1.0.0",
+  "description": "Doing a coding showcase for LeanTECHniques",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instagibby/gilded-rose-kata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/instagibby/gilded-rose-kata/issues"
+  },
+  "homepage": "https://github.com/instagibby/gilded-rose-kata#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "browser-sync": "^2.23.7",
+    "gulp": "^3.9.1"
+  }
+}
