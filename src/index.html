@@ -9,8 +9,7 @@
     let doc;
     
     window.onload = () => {
-      doc = document.querySelector('body');
-      doc.innerHTML += `<p>OMGHAI!</p><p>&#47;wave</p>`;
+      doc = document.querySelector('.content');
 
       items.push(new Item('+5 Dexterity Vest', 10, 20));
       items.push(new Item('Aged Brie', 2, 0));
@@ -32,13 +31,26 @@
       }
     }
     const showHeaderFor = (day) => {
-      doc.innerHTML += `<p>-------- day ${day} --------</p>`;
+      doc.innerHTML += `<div class="center-text"><p>-------- Day: ${day} --------</p></div>`;
     }
 
     const showItemsFor = (day) => {
-      doc.innerHTML += `<p>name, sellIn, quality</p>`;
+      doc.innerHTML += 
+        ` <div class="item-name"><p>Name:</p></div>
+          <div class="item-sell-in"><p>Sell In:</p></div>
+          <div class="item-quality"><p>Quality:</p></div>
+        `;
       items.map( item => {
-        doc.innerHTML += `<p>${item.name}, ${item.sell_in}, ${item.quality}</p>`;
+        doc.innerHTML += 
+          `<div class="item-name">
+            <p>${item.name}</p>
+          </div>
+          <div class="item-sell-in">
+            <p>${item.sell_in}</p>
+          </div>
+          <div class="item-quality">
+            <p>${item.quality}</p>
+          </div>`;
       });
       doc.innerHTML += `<br />`;
     }
@@ -47,6 +59,9 @@
 </head>
 
 <body>
+  <div class="container">
+    <div class="content"></div>
+  </div>
 </body>
 
 </html>
