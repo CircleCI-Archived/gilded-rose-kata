@@ -12,18 +12,30 @@ items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 15, 20))
 items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 15, 50)); // 6
 items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 11, 0));  // 7
 items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 6, 0));   // 8
-items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 1, 50));   // 9
+items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 1, 50));  // 9
+items.push(new gilded.Item('+5 Dexterity Vest', 0, 20));                          // 10
+
 
 gilded.UpdateItems(items);
 
 // Test General item
-describe('+5 Dexterity Vest (10,20)', () => {
+describe('+5 Dexterity Vest', () => {
+  describe('(10,20) regular', () => {
   it('should have sell_in 9 on day 1', () => {
     assert.strictEqual(items[0].sell_in, 9, 'Failed');
   });
   it('should have quality 19 on day 1', () => {
     assert.strictEqual(items[0].quality, 19, 'Failed');
   });
+  });
+  describe('(0,20) double decay', () => {
+    it('should have sell_in -1 on day 1', () => {
+      assert.strictEqual(items[10].sell_in, -1, 'Failed');
+    });
+    it('should have quality 18 on day 1', () => {
+      assert.strictEqual(items[10].quality, 18, 'Failed');
+    });
+    });
 });
 
 // Test Brie
@@ -111,4 +123,3 @@ describe('TAFKAL80ETC', () => {
   });
   });
 
-  
