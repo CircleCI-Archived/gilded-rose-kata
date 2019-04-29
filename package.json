@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/instagibby/gilded-rose-kata#readme",
   "dependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.1.4",
     "browser-sync": "^2.23.7",
-    "gulp": "^3.9.1"
+    "chai": "^4.2.0",
+    "gulp": "^3.9.1",
+    "mocha": "^6.1.4",
+    "node": "^11.14.0"
   }
 }
