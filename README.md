@@ -1,12 +1,12 @@
-##Gilded Rose Kata
-###npm install
+## Gilded Rose Kata
+### npm install
 installs dependencies
-###npm start
+### npm start
 starts browsersync and launches a browser with the page, uses localhost:3000
-###npm test
+### npm test
 runs tests set up using mocha and node.js
 
-##Original info:
+## Original info:
 Hi and welcome to team Gilded Rose.
 
 As you know, we are a small inn with a prime location in a prominent city ran
