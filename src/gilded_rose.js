@@ -106,7 +106,11 @@ module.exports = {
           }
           break;
         default:
-          currentItem.sell_in >= 0 ? qualityModifer(currentItem, -1) : qualityModifer(currentItem, -2);
+          if (currentItem.name.toLowerCase().includes('conjured')){
+            currentItem.sell_in >= 0 ? qualityModifer(currentItem, -2) : qualityModifer(currentItem, -4);
+          } else {
+            currentItem.sell_in >= 0 ? qualityModifer(currentItem, -1) : qualityModifer(currentItem, -2);
+          }
         break;
       }
     });
