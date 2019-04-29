@@ -11,22 +11,26 @@
     window.onload = () => {
       doc = document.querySelector('.content');
 
-      items.push(new Item('+5 Dexterity Vest', 10, 20));
-      items.push(new Item('Aged Brie', 2, 0));
-      items.push(new Item('Elixir of the Mongoose', 5, 7));
-      items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
-      items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));
-      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
-      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
-      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
-      // this conjured item does not work properly yet
-      // items.push(new Item('Conjured Mana Cake', 3, 6));
+      items.push(new Item('+5 Dexterity Vest', 10, 20));                         // 0
+      items.push(new Item('Aged Brie', 2, 0));                                   // 1
+      items.push(new Item('Aged Brie', 0, 0));                                   // 2
+      items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));                 // 3
+      items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));                // 4
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20)); // 5
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 50)); // 6
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 0));  // 7
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 0));   // 8
+      items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 0, 40));  // 9
+      items.push(new Item('+5 Dexterity Vest', 0, 20));                          // 10
+      items.push(new Item('Conjured Mana Buiscuit', 1, 20));                     // 11
+      items.push(new Item('Conjured Mana Buiscuit', 0, 20));                     // 12
+      
       const days = 2;
 
       for (let i = 0; i < days; i++) {
         showHeaderFor(i);
         showItemsFor(i);
-        update_quality();
+        update_quality(items);
       }
     }
     const showHeaderFor = (day) => {
