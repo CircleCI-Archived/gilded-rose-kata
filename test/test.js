@@ -14,6 +14,8 @@ items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 11, 0));
 items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 6, 0));   // 8
 items.push(new gilded.Item('Backstage passes to a TAFKAL80ETC concert', 0, 40));  // 9
 items.push(new gilded.Item('+5 Dexterity Vest', 0, 20));                          // 10
+items.push(new gilded.Item('Conjured Mana Buiscuit', 1, 20));                     // 11
+items.push(new gilded.Item('Conjured Mana Buiscuit', 0, 20));                     // 12
 
 
 gilded.UpdateItems(items);
@@ -121,6 +123,26 @@ describe('TAFKAL80ETC', () => {
       assert.strictEqual(items[9].quality, 0, 'Failed');
     });
   });
-}); 
+});
+
+// Test Conjured
+describe('Conjured Mana Buiscuit', () => {
+  describe('(1,20) regular', () => {
+  it('should have sell_in 0', () => {
+    assert.strictEqual(items[11].sell_in, 0, 'Failed');
+  });
+  it('should have quality 18', () => {
+    assert.strictEqual(items[11].quality, 18, 'Failed');
+  });
+  });
+  describe('(0,20) double decay', () => {
+    it('should have sell_in -1', () => {
+      assert.strictEqual(items[12].sell_in, -1, 'Failed');
+    });
+    it('should have quality 16', () => {
+      assert.strictEqual(items[12].quality, 16, 'Failed');
+    });
+    });
+});
 
 console.log(items);
