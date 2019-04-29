@@ -1,7 +1,7 @@
 var gilded = require('../src/gilded_rose');
 var assert = require('assert');
 
-let items = [];
+let items = []; 
 
 items.push(new gilded.Item('+5 Dexterity Vest', 10, 20));                         // 0
 items.push(new gilded.Item('Aged Brie', 2, 0));                                   // 1
@@ -56,7 +56,7 @@ describe('Aged Brie', () => {
       assert.strictEqual(items[2].sell_in, -1, 'Failed');
     });
     it('should have quality 1', () => {
-      assert.strictEqual(items[2].quality, 2, 'Failed');
+      assert.strictEqual(items[2].quality, 1, 'Failed');
     });
   });
 });
@@ -122,3 +122,5 @@ describe('TAFKAL80ETC', () => {
     });
   });
 }); 
+
+console.log(items);
