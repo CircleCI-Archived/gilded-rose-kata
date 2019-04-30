@@ -18,7 +18,7 @@ items.push(new gilded.Item('Conjured Mana Buiscuit', 1, 20));                   
 items.push(new gilded.Item('Conjured Mana Buiscuit', 0, 20));                     // 12
 
 
-gilded.updateQuality(items);
+gilded.update_quality(items);
 
 // Test General item
 describe('+5 Dexterity Vest', () => {
