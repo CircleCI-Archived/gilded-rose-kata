@@ -16,8 +16,8 @@ const update_quality = (items) => {
     // If Quality is less than zero, set it to zero.
     item.quality < 0 && (item.quality = 0);
   }
-
-  items.map((currentItem) => {
+  // Doesn't store return values as memory, using foreach instead
+  items.forEach((currentItem) => {
     // Decrement sell_in
     currentItem.name != 'Sulfuras, Hand of Ragnaros' && currentItem.sell_in--;
     switch (currentItem.name){
@@ -63,7 +63,7 @@ module.exports = {
     this.quality = quality;
   },
 
-  UpdateItems: updateQuality = (items) => {
+  updateQuality: updateQuality = (items) => {
 
     const qualityModifer = (item, change) => {
       // Increase or decrease quality
@@ -73,8 +73,8 @@ module.exports = {
       // If Quality is less than zero, set it to zero.
       item.quality < 0 && (item.quality = 0);
     }
-
-    items.map((currentItem) => {
+    // Doesn't store return values as memory, using foreach instead
+    items.forEach((currentItem) => {
       // Decrement sell_in
       currentItem.name != 'Sulfuras, Hand of Ragnaros' && currentItem.sell_in--;
       switch (currentItem.name){
