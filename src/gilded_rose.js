@@ -63,7 +63,7 @@ module.exports = {
     this.quality = quality;
   },
 
-  updateQuality: updateQuality = (items) => {
+  UpdateItems: updateQuality = (items) => {
 
     const qualityModifer = (item, change) => {
       // Increase or decrease quality
