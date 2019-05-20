@@ -1,0 +1,14 @@
+{
+  "name": "gilded-rose-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "CircleCI",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^3.3.0"
+  }
+}
