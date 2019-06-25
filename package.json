@@ -4,7 +4,6 @@
   "description": "Doing a coding showcase for LeanTECHniques",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "test": "mocha"
   },
   "repository": {
@@ -18,10 +17,10 @@
   },
   "homepage": "https://github.com/instagibby/gilded-rose-kata#readme",
   "dependencies": {
-    "browser-sync": "^2.23.7",
-    "chai": "^4.2.0",
-    "gulp": "^3.9.1",
-    "mocha": "^6.1.4",
     "node": "^11.14.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
   }
 }
