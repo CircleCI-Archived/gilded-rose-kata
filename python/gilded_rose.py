@@ -43,7 +43,6 @@ class GildedRose(object):
                 self.update_sellin(item,1) #re set sell in for legendary item
 
 
-
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name
@@ -52,3 +51,4 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
