@@ -1,13 +1,35 @@
 # -*- coding: utf-8 -*-
 
-class GildedRose(object):
 
+class GildedRose(object):
     def __init__(self, items):
+        """Init (constructor).
+
+        Parameters
+        ----------
+        items : list[Item]
+            Items
+
+        Returns
+        -------
+        None
+
+        """
         self.items = items
 
     def update_quality(self):
+        """Used at the end of each day to lower Sell In and Quality for every item.
+
+        Returns
+        -------
+        None
+
+        """
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
+            if (
+                item.name != "Aged Brie"
+                and item.name != "Backstage passes to a TAFKAL80ETC concert"
+            ):
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
                         item.quality = item.quality - 1
@@ -28,7 +50,10 @@ class GildedRose(object):
                     if item.name != "Backstage passes to a TAFKAL80ETC concert":
                         if item.quality > 0:
                             if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
+                                if "Conjured" not in item.name:
+                                    item.quality = item.quality - 1
+                                elif "Conjured" in item.name:
+                                    item.quality = item.quality - 2
                     else:
                         item.quality = item.quality - item.quality
                 else:
@@ -38,6 +63,22 @@ class GildedRose(object):
 
 class Item:
     def __init__(self, name, sell_in, quality):
+        """Init (constructor).
+
+        Parameters
+        ----------
+        name : str
+            Item name.
+        sell_in : int
+            Number of days we have to sell the item.
+        quality : int
+            How valuable the item is.
+
+        Returns
+        -------
+        None
+
+        """
         self.name = name
         self.sell_in = sell_in
         self.quality = quality

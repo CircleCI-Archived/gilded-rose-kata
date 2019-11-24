@@ -1,0 +1,16 @@
+[flake8]
+max-line-length = 100
+# TODO: Make lower 10-15ish
+max-complexity = 30
+filename = *.py
+format = default
+exclude =
+    britedata_py_reports/functools_lru_cache.py
+    britedata_py_reports/prep.py
+    britedata_py_reports/nonprep.py
+    # TODO: Remove
+    britedata_py_reports/custom_reports/shared_reports/agency_experience_df.py
+    britedata_py_reports/custom_reports/shared_reports/mutual_boiler_re.py
+    britedata_py_reports/custom_reports/velocity/agency_commissions_velocity.py
+    britedata_py_reports/custom_reports/afr/agency_metrics.py
+ignore = E203, E402, E501, E711, E712, W503, W504, W605
