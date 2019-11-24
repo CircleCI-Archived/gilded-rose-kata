@@ -3,9 +3,28 @@
 
 class GildedRose(object):
     def __init__(self, items):
+        """Init (constructor).
+
+        Parameters
+        ----------
+        items : list[Item]
+            Items
+
+        Returns
+        -------
+        None
+
+        """
         self.items = items
 
     def update_quality(self):
+        """Used at the end of each day to lower Sell In and Quality for every item.
+
+        Returns
+        -------
+        None
+
+        """
         for item in self.items:
             if (
                 item.name != "Aged Brie"
@@ -41,6 +60,22 @@ class GildedRose(object):
 
 class Item:
     def __init__(self, name, sell_in, quality):
+        """Init (constructor).
+
+        Parameters
+        ----------
+        name : str
+            Item name.
+        sell_in : int
+            Number of days we have to sell the item.
+        quality : int
+            How valuable the item is.
+
+        Returns
+        -------
+        None
+
+        """
         self.name = name
         self.sell_in = sell_in
         self.quality = quality
