@@ -38,7 +38,19 @@ class GildedRoseTest(unittest.TestCase):
         """
         Once the sell by date has passed, quality degrades twice as fast
         """
-        raise Exception("Implement new feature")
+        self.gilded_rose.items[4].sell_in = 1
+        previous_quality = self.gilded_rose.items[4].quality
+        self.gilded_rose.update_quality()
+        new_quality = self.gilded_rose.items[4].quality
+        previous_quality_increase_rate = (new_quality - previous_quality) / previous_quality
+        # Sell date has passed
+        previous_quality = self.gilded_rose.items[4].quality
+        self.gilded_rose.update_quality()
+        new_quality = self.gilded_rose.items[4].quality
+        new_quality_increase_rate = (previous_quality - new_quality) / previous_quality
+        increase_in_quality_rate = (new_quality_increase_rate - previous_quality_increase_rate) / previous_quality
+        self.assertEqual(increase_in_quality_rate / previous_quality, 1, "{} is not 1")
+        assert (new_quality_increase_rate - previous_quality_increase_rate) / previous_quality == 1
 
     def test_quality_is_never_negative(self):
         """
