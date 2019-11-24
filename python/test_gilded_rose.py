@@ -72,9 +72,10 @@ class GildedRoseTest(unittest.TestCase):
         "Sulfuras", being a legendary item, never has to be sold or decreases
         in quality
         """
+        previous_quality = self.gilded_rose.items[3].quality
         for i in range(0, 1000):
             self.gilded_rose.update_quality()
-            assert self.gilded_rose.items[0].quality <= 50
+            assert self.gilded_rose.items[3].quality == previous_quality
 
     def test_backstage_passes(self):
         """
