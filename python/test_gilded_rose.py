@@ -5,14 +5,15 @@ from gilded_rose import GildedRose, Item
 
 
 class GildedRoseTest(unittest.TestCase):
-
     def setUp(self):
         items = [
             Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
             Item(name="Aged Brie", sell_in=2, quality=0),
             Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
             Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80),
-            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
+            Item(
+                name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20
+            ),
             Item(name="Conjured Mana Cake", sell_in=3, quality=6),
         ]
         self.gilded_rose = GildedRose(items)
@@ -38,19 +39,23 @@ class GildedRoseTest(unittest.TestCase):
         """
         Once the sell by date has passed, quality degrades twice as fast
         """
-        self.gilded_rose.items[4].sell_in = 1
-        previous_quality = self.gilded_rose.items[4].quality
+        self.gilded_rose.items[5].sell_in = 1
+        previous_quality = self.gilded_rose.items[5].quality
         self.gilded_rose.update_quality()
-        new_quality = self.gilded_rose.items[4].quality
-        previous_quality_increase_rate = (new_quality - previous_quality) / previous_quality
+        new_quality = self.gilded_rose.items[5].quality
+        previous_quality_increase_rate = (
+            new_quality - previous_quality
+        ) / previous_quality
         # Sell date has passed
-        previous_quality = self.gilded_rose.items[4].quality
+        self.gilded_rose.items[5].sell_in = 0
+        previous_quality = self.gilded_rose.items[5].quality
         self.gilded_rose.update_quality()
-        new_quality = self.gilded_rose.items[4].quality
-        new_quality_increase_rate = (previous_quality - new_quality) / previous_quality
-        increase_in_quality_rate = (new_quality_increase_rate - previous_quality_increase_rate) / previous_quality
-        self.assertEqual(increase_in_quality_rate / previous_quality, 1, "{} is not 1")
-        assert (new_quality_increase_rate - previous_quality_increase_rate) / previous_quality == 1
+        new_quality = self.gilded_rose.items[5].quality
+        new_quality_increase_rate = (new_quality - previous_quality) / previous_quality
+        increase_in_quality_rate = (
+            new_quality_increase_rate - previous_quality_increase_rate
+        ) / previous_quality_increase_rate
+        assert increase_in_quality_rate >= 2
 
     def test_quality_is_never_negative(self):
         """
